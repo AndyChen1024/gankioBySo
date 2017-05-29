@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_home"
+        android:title="@string/main_tab_home"
+        android:icon="@drawable/ic_home_unselect"/>
+    <item
+        android:id="@+id/action_classify"
+        android:title="@string/main_tab_classify"
+        android:icon="@drawable/ic_dt_unselect"
+        />
+    <item
+        android:id="@+id/action_read"
+        android:title="@string/main_tab_read"
+        android:icon="@drawable/ic_imagejoke_unselect"/>
+    <item
+        android:id="@+id/action_mine"
+        android:title="@string/main_tab_mine"
+        android:icon="@drawable/ic_my_unselect"
+        />
+</menu>
