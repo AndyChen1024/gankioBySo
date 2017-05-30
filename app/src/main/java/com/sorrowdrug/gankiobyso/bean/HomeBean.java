@@ -1,5 +1,7 @@
 package com.sorrowdrug.gankiobyso.bean;
 
+import java.util.List;
+
 /**
  * Created by chentaikang on 2017/5/27 21:15.
  */
@@ -8,7 +10,7 @@ public class HomeBean {
     private String _id;
     private String createdAt;
     private String desc;
-
+    private List<String> images;
     private String publishedAt;
     private String type;
     private String url;
@@ -39,7 +41,13 @@ public class HomeBean {
         this.desc = desc;
     }
 
+    public List<String> getImages() {
+        return images;
+    }
 
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
 
     public String getPublishedAt() {
         return publishedAt;
