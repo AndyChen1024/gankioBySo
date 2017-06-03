@@ -25,14 +25,7 @@ import com.sorrowdrug.gankiobyso.ui.read.ReadFragment;
  */
 public class MainActivity extends BaseActivity {
 
-    /**
-     * 当前显示的Fragment
-     */
-    private Fragment mCurrentFragment;
-    /**
-     * 将要显示的Fragment
-     */
-    private Fragment mShowFragment;
+
 
     /**
      * 选择的下标

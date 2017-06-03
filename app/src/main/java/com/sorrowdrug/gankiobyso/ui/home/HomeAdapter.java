@@ -1,15 +1,19 @@
 package com.sorrowdrug.gankiobyso.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.sorrowdrug.gankiobyso.R;
+import com.sorrowdrug.gankiobyso.activity.ArticleWebView;
+import com.sorrowdrug.gankiobyso.activity.PhotoActivity;
 import com.sorrowdrug.gankiobyso.bean.HomeBean;
 import com.sorrowdrug.gankiobyso.bean.ItemType;
 
@@ -58,8 +62,24 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
     }
 
     @Override
-    public void onBindViewHolder(HomeHolder holder, int position) {
+    public void onBindViewHolder(HomeHolder holder, final int position) {
         holder.fill(datas.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = null;
+                if(getItemViewType(position)==ItemType.TYPE_IMAGE){
+                    intent=new Intent(context, PhotoActivity.class);
+                    Toast.makeText(context,"点击了图片",Toast.LENGTH_SHORT).show();
+                }else {
+                    intent = new Intent(context, ArticleWebView.class);
+                    Toast.makeText(context,"跳转到详情界面",Toast.LENGTH_SHORT).show();
+                }
+                HomeBean bean = (HomeBean) datas.get(position).getData();
+                intent.putExtra("url",bean.getUrl());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

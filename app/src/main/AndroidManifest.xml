@@ -24,7 +24,8 @@
         <activity
             android:name=".activity.ArticleWebView"
             android:label="@string/title_activity_article_web_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.PhotoActivity"></activity>
     </application>
 
 </manifest>

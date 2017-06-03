@@ -20,6 +20,7 @@ public class ArticleWebView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_web_view);
 
+
         mWvWeb = (WebView) findViewById(R.id.wv_web);
 
         initData();
