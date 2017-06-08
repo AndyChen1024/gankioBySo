@@ -28,10 +28,10 @@ public class App extends Application {
         // 缓存路径
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             cacheDorectory = sContext.getExternalCacheDir();
-            picDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "gank_pics");
+            picDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "gankBySo_pics");
         } else {
             cacheDorectory = sContext.getCacheDir();
-            picDirectory = new File(sContext.getFilesDir(), "gank_pics");
+            picDirectory = new File(sContext.getFilesDir(), "gankBySo_pics");
         }
         mkDir(picDirectory);
     }

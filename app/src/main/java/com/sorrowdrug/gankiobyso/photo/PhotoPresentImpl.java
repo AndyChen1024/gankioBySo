@@ -39,7 +39,8 @@ public class PhotoPresentImpl implements PhotoContract.PhotoPresenter {
     @Override
     public void setPhoto(Intent intent, ImageView view) {
         mUrl = intent.getStringExtra("url");
-        DrawableTypeRequest<String> load = Glide.with(view.getContext()).load(mUrl);
+        //带上的后缀是请求宽度:500的图片,非原图.为节约流量
+        DrawableTypeRequest<String> load = Glide.with(view.getContext()).load(mUrl+"?imageView2/0/w/500");
         //渐入效果
         load.crossFade();
         load.asBitmap().into(view);
@@ -47,7 +48,7 @@ public class PhotoPresentImpl implements PhotoContract.PhotoPresenter {
     }
 
     @Override
-    public void savePhoto(final ImageView view) {
+    public void savePhoto(ImageView view) {
         final BitmapDrawable drawable = (BitmapDrawable) view.getDrawable();
         if (drawable != null) {
             //做出提示
@@ -91,12 +92,12 @@ public class PhotoPresentImpl implements PhotoContract.PhotoPresenter {
 
                         @Override
                         public void onError(Throwable e) {
-                            Toast.makeText(view.getContext(),"哎哟,保存失败,可能内存不足哟~",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(App.sContext,"哎哟,保存失败,可能内存不足哟~",Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onNext(String s) {
-                            Toast.makeText(view.getContext(),"保存在:"+s,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(App.sContext,"保存在:"+s,Toast.LENGTH_SHORT).show();
 
                         }
                     });
