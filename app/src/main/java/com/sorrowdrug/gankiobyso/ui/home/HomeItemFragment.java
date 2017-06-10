@@ -3,7 +3,7 @@ package com.sorrowdrug.gankiobyso.ui.home;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
-import com.sorrowdrug.gankiobyso.bean.ItemType;
+import com.sorrowdrug.gankiobyso.ui.home.bean.ItemType;
 import com.sorrowdrug.gankiobyso.ui.base.BaseListFragment;
 import com.sorrowdrug.gankiobyso.ui.home.mvp.HomeConstraint;
 import com.sorrowdrug.gankiobyso.ui.home.mvp.HomePresenterImpl;

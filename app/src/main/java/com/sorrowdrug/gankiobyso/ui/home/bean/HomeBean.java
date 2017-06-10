@@ -1,4 +1,4 @@
-package com.sorrowdrug.gankiobyso.bean;
+package com.sorrowdrug.gankiobyso.ui.home.bean;
 
 import java.util.List;
 

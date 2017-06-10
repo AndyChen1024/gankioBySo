@@ -14,8 +14,8 @@ import com.bumptech.glide.Glide;
 import com.sorrowdrug.gankiobyso.R;
 import com.sorrowdrug.gankiobyso.activity.ArticleWebView;
 import com.sorrowdrug.gankiobyso.activity.PhotoActivity;
-import com.sorrowdrug.gankiobyso.bean.HomeBean;
-import com.sorrowdrug.gankiobyso.bean.ItemType;
+import com.sorrowdrug.gankiobyso.ui.home.bean.HomeBean;
+import com.sorrowdrug.gankiobyso.ui.home.bean.ItemType;
 
 import java.util.ArrayList;
 

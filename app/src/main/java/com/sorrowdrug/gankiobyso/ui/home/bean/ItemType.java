@@ -1,4 +1,4 @@
-package com.sorrowdrug.gankiobyso.bean;
+package com.sorrowdrug.gankiobyso.ui.home.bean;
 
 /**
  * Created by chentaikang on 2017/5/27 21:21.

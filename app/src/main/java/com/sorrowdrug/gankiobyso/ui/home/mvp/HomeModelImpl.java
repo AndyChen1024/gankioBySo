@@ -1,7 +1,7 @@
 package com.sorrowdrug.gankiobyso.ui.home.mvp;
 
-import com.sorrowdrug.gankiobyso.bean.HomeTabBean;
-import com.sorrowdrug.gankiobyso.bean.HomeTypeBean;
+import com.sorrowdrug.gankiobyso.ui.home.bean.HomeTabBean;
+import com.sorrowdrug.gankiobyso.ui.home.bean.HomeTypeBean;
 import com.sorrowdrug.gankiobyso.net.BaseResult;
 import com.sorrowdrug.gankiobyso.net.NetResponse;
 import com.sorrowdrug.gankiobyso.net.NetUtils;

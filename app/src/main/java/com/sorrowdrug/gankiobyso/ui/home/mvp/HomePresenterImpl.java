@@ -2,9 +2,9 @@ package com.sorrowdrug.gankiobyso.ui.home.mvp;
 
 import android.text.TextUtils;
 
-import com.sorrowdrug.gankiobyso.bean.HomeBean;
-import com.sorrowdrug.gankiobyso.bean.HomeTypeBean;
-import com.sorrowdrug.gankiobyso.bean.ItemType;
+import com.sorrowdrug.gankiobyso.ui.home.bean.HomeBean;
+import com.sorrowdrug.gankiobyso.ui.home.bean.HomeTypeBean;
+import com.sorrowdrug.gankiobyso.ui.home.bean.ItemType;
 import com.sorrowdrug.gankiobyso.net.NetResponse;
 
 import java.util.ArrayList;

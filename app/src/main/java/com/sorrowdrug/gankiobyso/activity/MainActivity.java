@@ -115,7 +115,7 @@ public class MainActivity extends BaseActivity {
                     selIndex = 1;
                     hint(transaction, 0, 2, 3);
                     if(mClassifyFragment == null){
-                        mClassifyFragment= ClassifyFragment.newInstance();
+                        mClassifyFragment= new ClassifyFragment();
                         transaction.add(R.id.fragment_container,mClassifyFragment,tags[1]);
                     }else {
                         transaction.show(mClassifyFragment);

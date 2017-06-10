@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.sorrowdrug.gankiobyso.R;
-import com.sorrowdrug.gankiobyso.bean.HomeTabBean;
+import com.sorrowdrug.gankiobyso.ui.home.bean.HomeTabBean;
 import com.sorrowdrug.gankiobyso.ui.base.BaseFragment;
 import com.sorrowdrug.gankiobyso.ui.home.mvp.HomeConstraint;
 import com.sorrowdrug.gankiobyso.ui.home.mvp.HomePresenterImpl;
