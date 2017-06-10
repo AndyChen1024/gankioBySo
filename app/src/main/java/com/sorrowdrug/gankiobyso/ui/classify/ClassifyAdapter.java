@@ -1,6 +1,7 @@
 package com.sorrowdrug.gankiobyso.ui.classify;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sorrowdrug.gankiobyso.R;
+import com.sorrowdrug.gankiobyso.activity.ArticleWebView;
 import com.sorrowdrug.gankiobyso.ui.classify.bean.ClassifyBean;
 
 import java.util.ArrayList;
@@ -60,8 +62,17 @@ public class ClassifyAdapter extends RecyclerView.Adapter<ClassifyAdapter.Classi
 
     @Override
     public void onBindViewHolder(ClassifyHolder holder, int position) {
-        ClassifyBean bean = datas.get(position);
+        final ClassifyBean bean = datas.get(position);
         holder.fill(bean);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ArticleWebView.class);
+                intent.putExtra("url",bean.getUrl());
+                context.startActivity(intent);
+
+            }
+        });
     }
 
 
