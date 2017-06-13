@@ -10,10 +10,7 @@
         android:title="@string/main_tab_classify"
         android:icon="@drawable/ic_dt_unselect"
         />
-    <item
-        android:id="@+id/action_read"
-        android:title="@string/main_tab_read"
-        android:icon="@drawable/ic_imagejoke_unselect"/>
+
     <item
         android:id="@+id/action_mine"
         android:title="@string/main_tab_mine"

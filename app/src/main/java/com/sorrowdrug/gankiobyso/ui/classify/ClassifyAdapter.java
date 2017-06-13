@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.sorrowdrug.gankiobyso.R;
@@ -70,7 +71,7 @@ public class ClassifyAdapter extends RecyclerView.Adapter<ClassifyAdapter.Classi
                 Intent intent = new Intent(context, ArticleWebView.class);
                 intent.putExtra("url",bean.getUrl());
                 context.startActivity(intent);
-
+                Toast.makeText(context,"跳转到详情界面",Toast.LENGTH_SHORT).show();
             }
         });
     }

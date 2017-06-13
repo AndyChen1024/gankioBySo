@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
     tools:context=".activity.MainActivity">
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_bar" />
+        android:layout_above="@+id/bottom_bar">
+
+
+    </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="65dp"
+        android:layout_marginRight="45dp"
+        android:onClick="fabOnClick"
+        android:src="@drawable/ic_imagejoke_select"
+        app:backgroundTint="@color/blackOlive"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/gray"
+        app:elevation="8dp"
+        app:pressedTranslationZ="16dp" />
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
@@ -18,10 +39,7 @@
         android:layout_alignParentBottom="true"
         app:itemIconTint="@color/navibar_select"
         app:itemTextColor="@color/navibar_select"
-        app:menu="@menu/menu_bottom_navigation"
-        />
-
-
+        app:menu="@menu/menu_bottom_navigation" />
 
 
 </RelativeLayout>

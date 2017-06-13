@@ -1,5 +1,6 @@
 package com.sorrowdrug.gankiobyso.net;
 
+import com.sorrowdrug.gankiobyso.history.HistoryBean;
 import com.sorrowdrug.gankiobyso.ui.classify.bean.ClassifyBean;
 import com.sorrowdrug.gankiobyso.ui.home.bean.HomeTabBean;
 import com.sorrowdrug.gankiobyso.ui.home.bean.HomeTypeBean;
@@ -34,4 +35,7 @@ public interface IApi {
     Observable<BaseResult<List<ClassifyBean>>> getClassify(
             @Path("type") String type,@Path("page") int page
     );
+
+    @GET("data/福利/10/{page}")
+    Observable<BaseResult<List<HistoryBean>>> getHistory(@Path("page") int page);
 }

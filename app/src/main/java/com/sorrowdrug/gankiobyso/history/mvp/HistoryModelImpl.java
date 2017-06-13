@@ -1,7 +1,8 @@
-package com.sorrowdrug.gankiobyso.ui.classify.mvp;
+package com.sorrowdrug.gankiobyso.history.mvp;
 
 import android.content.Context;
 
+import com.sorrowdrug.gankiobyso.history.HistoryBean;
 import com.sorrowdrug.gankiobyso.net.BaseResult;
 import com.sorrowdrug.gankiobyso.net.ExceptionHandle;
 import com.sorrowdrug.gankiobyso.net.IApi;
@@ -16,15 +17,16 @@ import java.util.List;
 import rx.Observable;
 
 /**
- * Created by chentaikang on 2017/6/10 07:24.
+ * Created by chentaikang on 2017/6/12 08:42.
  */
 
-class ClassifyModelImpl implements ClassifyContaint.IClassifyModel {
+public class HistoryModelImpl implements HistoryConstraint.HistoryModel {
+
     @Override
-    public void loadData(Context context, String type, int page, final NetResponse callback) {
+    public void loadContent(Context context, int page, final NetResponse callback) {
         IApi api = NetUtils.getInstance().getApi();
-        Observable<BaseResult<List<ClassifyBean>>> observable =
-                api.getClassify(type, page);
+        Observable<BaseResult<List<HistoryBean>>> observable =
+                api.getHistory(page);
         observable
                 .compose(NetHelper.schedulersTransformer())
                 .compose(NetHelper.transformer())

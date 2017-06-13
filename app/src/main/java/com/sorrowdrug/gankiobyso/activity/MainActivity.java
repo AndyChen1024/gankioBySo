@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,13 +19,11 @@ import com.sorrowdrug.gankiobyso.ui.base.BaseActivity;
 import com.sorrowdrug.gankiobyso.ui.classify.ClassifyFragment;
 import com.sorrowdrug.gankiobyso.ui.home.HomeFragment;
 import com.sorrowdrug.gankiobyso.ui.mine.MineFragment;
-import com.sorrowdrug.gankiobyso.ui.read.ReadFragment;
 
 /**
  * <b>app主页Activity</b>
  */
 public class MainActivity extends BaseActivity {
-
 
 
     /**
@@ -36,11 +35,13 @@ public class MainActivity extends BaseActivity {
 
     private FragmentManager fm;
 
-    private String[] tags = {"HOME", "CLASSIFY", "READ", "MINE"};
+    private String[] tags = {"HOME", "CLASSIFY", "MINE"};
 
-    private Fragment mHomeFragment, mClassifyFragment, mReadFragment, mMineFragment;
+    private Fragment mHomeFragment, mClassifyFragment, mMineFragment;
 
     private BottomNavigationView mTab;
+
+    private FloatingActionButton mFab;
 
     //为启动页做准备
     public static void show(Context context) {
@@ -52,9 +53,24 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+//        //使状态栏透明
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            Window window = getWindow();
+//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+//                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.setStatusBarColor(Color.TRANSPARENT);
+//            window.setNavigationBarColor(Color.TRANSPARENT);
+//        }
+
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
         mTab = (BottomNavigationView) findViewById(R.id.bottom_bar);
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
         mTab.setOnNavigationItemSelectedListener(new SelectedListener());
         fm = getSupportFragmentManager();
         if (savedInstanceState != null) {
@@ -62,8 +78,7 @@ public class MainActivity extends BaseActivity {
             selIndex = savedInstanceState.getInt(SELINDEX, selIndex);
             mHomeFragment = fm.findFragmentByTag(tags[0]);
             mClassifyFragment = fm.findFragmentByTag(tags[1]);
-            mReadFragment = fm.findFragmentByTag(tags[2]);
-            mMineFragment = fm.findFragmentByTag(tags[3]);
+            mMineFragment = fm.findFragmentByTag(tags[2]);
             restoreSelect();
         } else {
             mTab.findViewById(R.id.action_home).performClick();
@@ -82,15 +97,25 @@ public class MainActivity extends BaseActivity {
                 view = mTab.findViewById(R.id.action_classify);
                 break;
             case 2:
-                view = mTab.findViewById(R.id.action_read);
-                break;
-            case 3:
                 view = mTab.findViewById(R.id.action_mine);
                 break;
             default:
                 break;
         }
         view.performClick();
+    }
+
+    public void fabOnClick(View view) {
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                startActivity(intent);
+//                Snackbar.make(v,"跳转图片展示画面~~",Snackbar.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "跳转图片展示画面", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     class SelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -103,41 +128,32 @@ public class MainActivity extends BaseActivity {
             switch (item.getItemId()) {
                 case R.id.action_home:
                     selIndex = 0;
-                    hint(transaction, 1, 2, 3);
-                    if(mHomeFragment == null){
-                        mHomeFragment= HomeFragment.newInstance();
-                        transaction.add(R.id.fragment_container,mHomeFragment,tags[0]);
-                    }else {
+                    hint(transaction, 1, 2);
+                    if (mHomeFragment == null) {
+                        mHomeFragment = HomeFragment.newInstance();
+                        transaction.add(R.id.fragment_container, mHomeFragment, tags[0]);
+                    } else {
                         transaction.show(mHomeFragment);
                     }
                     break;
                 case R.id.action_classify:
                     selIndex = 1;
-                    hint(transaction, 0, 2, 3);
-                    if(mClassifyFragment == null){
-                        mClassifyFragment= new ClassifyFragment();
-                        transaction.add(R.id.fragment_container,mClassifyFragment,tags[1]);
-                    }else {
+                    hint(transaction, 0, 2);
+                    if (mClassifyFragment == null) {
+                        mClassifyFragment = new ClassifyFragment();
+                        transaction.add(R.id.fragment_container, mClassifyFragment, tags[1]);
+                    } else {
                         transaction.show(mClassifyFragment);
                     }
                     break;
-                case R.id.action_read:
-                    selIndex = 2;
-                    hint(transaction, 0, 1, 3);
-                    if(mReadFragment == null){
-                        mReadFragment= ReadFragment.newInstance();
-                        transaction.add(R.id.fragment_container,mReadFragment,tags[2]);
-                    }else {
-                        transaction.show(mReadFragment);
-                    }
-                    break;
+
                 case R.id.action_mine:
-                    selIndex = 3;
-                    hint(transaction, 0, 1, 2);
-                    if(mMineFragment == null){
-                        mMineFragment= MineFragment.newInstance();
-                        transaction.add(R.id.fragment_container,mMineFragment,tags[3]);
-                    }else {
+                    selIndex = 2;
+                    hint(transaction, 0, 1);
+                    if (mMineFragment == null) {
+                        mMineFragment = MineFragment.newInstance();
+                        transaction.add(R.id.fragment_container, mMineFragment, tags[2]);
+                    } else {
                         transaction.show(mMineFragment);
                     }
                     break;
@@ -161,12 +177,9 @@ public class MainActivity extends BaseActivity {
                     if (mClassifyFragment != null)
                         transaction.hide(mClassifyFragment);
                     break;
+
                 case 2:
-                    if(mReadFragment!=null)
-                        transaction.hide(mReadFragment);
-                    break;
-                case 3:
-                    if(mMineFragment!=null)
+                    if (mMineFragment != null)
                         transaction.hide(mMineFragment);
                     break;
 
