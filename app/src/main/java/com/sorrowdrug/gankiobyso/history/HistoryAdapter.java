@@ -11,11 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.sorrowdrug.gankiobyso.R;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import static android.content.ContentValues.TAG;
 
@@ -28,7 +27,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
     private final LayoutInflater inflater;
     private Context context;
     private ArrayList<HistoryBean> datas;
-    private List<Integer> heightList;
+//    private List<Integer> heightList;
 
     public HistoryAdapter(Context context, ArrayList<HistoryBean> datas) {
         this.context = context;
@@ -88,16 +87,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
         @Override
         public void fill(HistoryBean data,int position) {
             String url = data.getUrl() + "?imageView2/0/w/200";//加载更小的图片,防止OOM
-            Glide.with(context).load(url).into(imageView);
+            Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
 
-            heightList = new ArrayList<>();
-            for (int i = 0; i < datas.size(); i++) {
-                int height = new Random().nextInt(200) + 400;//[400,600)的随机高度
-                heightList.add(height);
-            }
-            ViewGroup.LayoutParams params_iv = imageView.getLayoutParams();
-            params_iv.height = heightList.get(position);
-            imageView.setLayoutParams(params_iv);
+//            heightList = new ArrayList<>();
+//            for (int i = 0; i < datas.size(); i++) {
+//                int height = new Random().nextInt(200) + 400;//[400,600)的随机高度
+//                heightList.add(height);
+//            }
+//            ViewGroup.LayoutParams params_iv = imageView.getLayoutParams();
+//            params_iv.height = heightList.get(position);
+
+
+//            imageView.setLayoutParams(params_iv);
 
             textView.setText(data.getDesc());
             Log.i(TAG, "fill: "+data.getDesc());

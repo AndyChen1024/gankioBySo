@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -71,6 +72,16 @@ public class MainActivity extends BaseActivity {
         getSupportActionBar().hide();
         mTab = (BottomNavigationView) findViewById(R.id.bottom_bar);
         mFab = (FloatingActionButton) findViewById(R.id.fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                startActivity(intent);
+                Snackbar.make(v,"跳转图片展示画面~~",Snackbar.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "跳转图片展示画面", Toast.LENGTH_SHORT).show();
+            }
+        });
         mTab.setOnNavigationItemSelectedListener(new SelectedListener());
         fm = getSupportFragmentManager();
         if (savedInstanceState != null) {
@@ -105,18 +116,7 @@ public class MainActivity extends BaseActivity {
         view.performClick();
     }
 
-    public void fabOnClick(View view) {
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
-                startActivity(intent);
-//                Snackbar.make(v,"跳转图片展示画面~~",Snackbar.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), "跳转图片展示画面", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     class SelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener {
 

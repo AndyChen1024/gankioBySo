@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
+import com.sorrowdrug.gankiobyso.App;
 import com.sorrowdrug.gankiobyso.ui.base.BaseListFragment;
 import com.sorrowdrug.gankiobyso.ui.classify.bean.ClassifyBean;
 import com.sorrowdrug.gankiobyso.ui.classify.mvp.ClassifyContaint;
@@ -41,7 +42,7 @@ public class ClassifyItemFragment extends BaseListFragment
         if (getArguments() != null) {
             type = getArguments().getString(BUNDLE_KEY);
         }
-        presenter = new ClassifyPresenterImpl(this, type, getContext());
+        presenter = new ClassifyPresenterImpl(this, type, App.sContext);
     }
 
     @Override

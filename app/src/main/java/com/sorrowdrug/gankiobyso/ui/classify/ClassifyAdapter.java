@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.sorrowdrug.gankiobyso.App;
 import com.sorrowdrug.gankiobyso.R;
 import com.sorrowdrug.gankiobyso.activity.ArticleWebView;
 import com.sorrowdrug.gankiobyso.ui.classify.bean.ClassifyBean;
@@ -71,7 +73,7 @@ public class ClassifyAdapter extends RecyclerView.Adapter<ClassifyAdapter.Classi
                 Intent intent = new Intent(context, ArticleWebView.class);
                 intent.putExtra("url",bean.getUrl());
                 context.startActivity(intent);
-                Toast.makeText(context,"跳转到详情界面",Toast.LENGTH_SHORT).show();
+                Toast.makeText(App.sContext,"跳转到详情界面",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -107,7 +109,7 @@ public class ClassifyAdapter extends RecyclerView.Adapter<ClassifyAdapter.Classi
             author.setText(data.getWho());
             time.setText(data.getPublishedAt());
             String url = data.getImages().get(0);
-            Glide.with(context).load(url).into(imageView);
+            Glide.with(context).load(url).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
         }
     }
 
