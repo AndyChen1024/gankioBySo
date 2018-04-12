@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.sorrowdrug.gankiobyso.R;
 
 import java.util.ArrayList;
@@ -87,7 +88,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
         @Override
         public void fill(HistoryBean data,int position) {
             String url = data.getUrl() + "?imageView2/0/w/200";//加载更小的图片,防止OOM
-            Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
+            RequestOptions options = new RequestOptions();
+            options.diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+            Glide.with(context).load(url).apply(options).into(imageView);
 
 //            heightList = new ArrayList<>();
 //            for (int i = 0; i < datas.size(); i++) {

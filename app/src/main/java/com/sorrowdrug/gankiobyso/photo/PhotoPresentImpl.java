@@ -6,7 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.DrawableTypeRequest;
+
 import com.bumptech.glide.Glide;
 import com.sorrowdrug.gankiobyso.App;
 import com.sorrowdrug.gankiobyso.utils.MD5Util;
@@ -40,10 +40,8 @@ public class PhotoPresentImpl implements PhotoContract.PhotoPresenter {
     public void setPhoto(Intent intent, ImageView view) {
         mUrl = intent.getStringExtra("url");
         //带上的后缀是请求宽度:500的图片,非原图.为节约流量
-        DrawableTypeRequest<String> load = Glide.with(view.getContext()).load(mUrl+"?imageView2/0/w/500");
-        //渐入效果
-        load.crossFade();
-        load.asBitmap().into(view);
+        Glide.with(view.getContext()).load(mUrl+"?imageView2/0/w/500").into(view);
+
         this.view.showPhoto();
     }
 

@@ -11,7 +11,8 @@ import java.util.List;
  * Created by chentaikang on 2017/6/8 15:46.
  */
 
-public class ClassifyPresenterImpl implements ClassifyContaint.IClassifyPresenter {
+public class ClassifyPresenterImpl implements
+        ClassifyContaint.IClassifyPresenter {
 
     private ClassifyContaint.IClassifyView view;
     private ClassifyContaint.IClassifyModel model;
