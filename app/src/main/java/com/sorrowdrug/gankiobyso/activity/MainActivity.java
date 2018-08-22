@@ -20,6 +20,7 @@ import com.sorrowdrug.gankiobyso.ui.base.BaseActivity;
 import com.sorrowdrug.gankiobyso.ui.classify.ClassifyFragment;
 import com.sorrowdrug.gankiobyso.ui.home.HomeFragment;
 import com.sorrowdrug.gankiobyso.ui.mine.MineFragment;
+import com.sorrowdrug.gankiobyso.utils.WaterUtil;
 
 /**
  * <b>app主页Activity</b>
@@ -34,7 +35,7 @@ public class MainActivity extends BaseActivity {
 
     public static final String SELINDEX = "INDEX";
 
-    private FragmentManager fm;
+      private FragmentManager fm;
 
     private String[] tags = {"HOME", "CLASSIFY", "MINE"};
 
@@ -54,19 +55,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-//        //使状态栏透明
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            Window window = getWindow();
-//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-//                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-//                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//            window.setStatusBarColor(Color.TRANSPARENT);
-//            window.setNavigationBarColor(Color.TRANSPARENT);
-//        }
 
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
@@ -94,6 +82,11 @@ public class MainActivity extends BaseActivity {
         } else {
             mTab.findViewById(R.id.action_home).performClick();
         }
+
+        View view= findViewById(R.id.fragment_container);
+        //水印
+        WaterUtil util = new WaterUtil();
+        util.setWaterMarkTextBg(view,this,"陈泰康");
 
     }
 

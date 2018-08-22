@@ -1,9 +1,55 @@
-*.iml
-.gradle
+# Created by .ignore support plugin (hsz.mobi)
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
 .DS_Store
-/build
 /captures
-.externalNativeBuild
+# OSX
+
+*.DS_Store
+
+# Gradle files
+build/
+.gradle/
+*/build/
+
+# IDEA
+*.iml
+.idea/.name
+.idea/encodings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/libraries
+
+# Built application files
+*.apk
+*.ap_
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+antLauncher/bin
+antLauncher/gen
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log Files
+*.log
+.gitignore
+build/android-profile/profile-2018-07-30-11-30-36-693.json
+build/android-profile/profile-2018-07-30-11-30-36-693.rawproto
+build/android-profile/profile-2018-07-30-12-40-28-234.json
+build/android-profile/profile-2018-07-30-12-40-28-234.rawproto
+build/android-profile/profile-2018-07-30-12-43-44-932.json
+build/android-profile/profile-2018-07-30-12-43-44-932.rawproto
+build/android-profile/profile-2018-07-30-13-04-30-114.json
+build/android-profile/profile-2018-07-30-13-04-30-114.rawproto
+build/intermediates/
