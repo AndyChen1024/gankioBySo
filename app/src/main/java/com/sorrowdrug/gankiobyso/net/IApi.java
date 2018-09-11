@@ -1,6 +1,6 @@
 package com.sorrowdrug.gankiobyso.net;
 
-import com.sorrowdrug.gankiobyso.history.HistoryBean;
+import com.sorrowdrug.gankiobyso.ui.history.HistoryBean;
 import com.sorrowdrug.gankiobyso.ui.classify.bean.ClassifyBean;
 import com.sorrowdrug.gankiobyso.ui.home.bean.HomeTabBean;
 import com.sorrowdrug.gankiobyso.ui.home.bean.HomeTypeBean;

@@ -1,8 +1,8 @@
-package com.sorrowdrug.gankiobyso.history.mvp;
+package com.sorrowdrug.gankiobyso.ui.history.mvp;
 
 import android.content.Context;
 
-import com.sorrowdrug.gankiobyso.history.HistoryBean;
+import com.sorrowdrug.gankiobyso.ui.history.HistoryBean;
 import com.sorrowdrug.gankiobyso.net.BaseResult;
 import com.sorrowdrug.gankiobyso.net.ExceptionHandle;
 import com.sorrowdrug.gankiobyso.net.IApi;

@@ -1,4 +1,4 @@
-package com.sorrowdrug.gankiobyso.history;
+package com.sorrowdrug.gankiobyso.ui.history;
 
 /**
  * Created by chentaikang on 2017/6/12 08:14.

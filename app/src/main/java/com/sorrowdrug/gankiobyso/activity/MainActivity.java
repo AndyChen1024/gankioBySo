@@ -27,177 +27,170 @@ import com.sorrowdrug.gankiobyso.utils.WaterUtil;
  */
 public class MainActivity extends BaseActivity {
 
+  /**
+   * 选择的下标
+   */
+  private int selIndex = 0;
 
-    /**
-     * 选择的下标
-     */
-    private int selIndex = 0;
+  public static final String SELINDEX = "INDEX";
 
-    public static final String SELINDEX = "INDEX";
+  private FragmentManager fm;
 
-      private FragmentManager fm;
+  private String[] tags = {"HOME", "CLASSIFY", "MINE"};
 
-    private String[] tags = {"HOME", "CLASSIFY", "MINE"};
+  private Fragment mHomeFragment, mClassifyFragment, mMineFragment;
 
-    private Fragment mHomeFragment, mClassifyFragment, mMineFragment;
+  private BottomNavigationView mTab;
 
-    private BottomNavigationView mTab;
+  private FloatingActionButton mFab;
 
-    private FloatingActionButton mFab;
+  //为启动页做准备
+  public static void show(Context context) {
+    Intent intent = new Intent(context, MainActivity.class);
+    context.startActivity(intent);
+  }
 
-    //为启动页做准备
-    public static void show(Context context) {
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+    setContentView(R.layout.activity_main);
+    getSupportActionBar().hide();
+    mTab = (BottomNavigationView) findViewById(R.id.bottom_bar);
+    mFab = (FloatingActionButton) findViewById(R.id.fab);
+    mFab.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+
+        Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+        startActivity(intent);
+        Snackbar.make(v, "跳转图片展示画面~~", Snackbar.LENGTH_SHORT).show();
+        //                Toast.makeText(getApplicationContext(), "跳转图片展示画面", Toast.LENGTH_SHORT).show();
+      }
+    });
+    mTab.setOnNavigationItemSelectedListener(new SelectedListener());
+    fm = getSupportFragmentManager();
+    if (savedInstanceState != null) {
+      //读取上一次界面save的时候tab选中的状态
+      selIndex = savedInstanceState.getInt(SELINDEX, selIndex);
+      mHomeFragment = fm.findFragmentByTag(tags[0]);
+      mClassifyFragment = fm.findFragmentByTag(tags[1]);
+      mMineFragment = fm.findFragmentByTag(tags[2]);
+      restoreSelect();
+    } else {
+      mTab.findViewById(R.id.action_home).performClick();
     }
+
+    View view = findViewById(R.id.fragment_container);
+    //水印
+    WaterUtil util = new WaterUtil();
+    util.setWaterMarkTextBg(view, this, "陈泰康");
+  }
+
+  private void restoreSelect() {
+    //选中index
+    View view = null;
+    switch (selIndex) {
+      case 0:
+        view = mTab.findViewById(R.id.action_home);
+        break;
+      case 1:
+        view = mTab.findViewById(R.id.action_classify);
+        break;
+      case 2:
+        view = mTab.findViewById(R.id.action_mine);
+        break;
+      default:
+        break;
+    }
+    view.performClick();
+  }
+
+  class SelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+      FragmentTransaction transaction = fm.beginTransaction();
 
-        setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
-        mTab = (BottomNavigationView) findViewById(R.id.bottom_bar);
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+      switch (item.getItemId()) {
+        case R.id.action_home:
+          selIndex = 0;
+          hint(transaction, 1, 2);
+          if (mHomeFragment == null) {
+            mHomeFragment = HomeFragment.newInstance();
+            transaction.add(R.id.fragment_container, mHomeFragment, tags[0]);
+          } else {
+            transaction.show(mHomeFragment);
+          }
+          break;
+        case R.id.action_classify:
+          selIndex = 1;
+          hint(transaction, 0, 2);
+          if (mClassifyFragment == null) {
+            mClassifyFragment = new ClassifyFragment();
+            transaction.add(R.id.fragment_container, mClassifyFragment, tags[1]);
+          } else {
+            transaction.show(mClassifyFragment);
+          }
+          break;
 
-                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
-                startActivity(intent);
-                Snackbar.make(v,"跳转图片展示画面~~",Snackbar.LENGTH_SHORT).show();
-//                Toast.makeText(getApplicationContext(), "跳转图片展示画面", Toast.LENGTH_SHORT).show();
-            }
-        });
-        mTab.setOnNavigationItemSelectedListener(new SelectedListener());
-        fm = getSupportFragmentManager();
-        if (savedInstanceState != null) {
-            //读取上一次界面save的时候tab选中的状态
-            selIndex = savedInstanceState.getInt(SELINDEX, selIndex);
-            mHomeFragment = fm.findFragmentByTag(tags[0]);
-            mClassifyFragment = fm.findFragmentByTag(tags[1]);
-            mMineFragment = fm.findFragmentByTag(tags[2]);
-            restoreSelect();
-        } else {
-            mTab.findViewById(R.id.action_home).performClick();
-        }
-
-        View view= findViewById(R.id.fragment_container);
-        //水印
-        WaterUtil util = new WaterUtil();
-        util.setWaterMarkTextBg(view,this,"陈泰康");
-
+        case R.id.action_mine:
+          selIndex = 2;
+          hint(transaction, 0, 1);
+          if (mMineFragment == null) {
+            mMineFragment = MineFragment.newInstance();
+            transaction.add(R.id.fragment_container, mMineFragment, tags[2]);
+          } else {
+            transaction.show(mMineFragment);
+          }
+          break;
+      }
+      transaction.commit();
+      return true;
     }
+  }
 
-    private void restoreSelect() {
-        //选中index
-        View view = null;
-        switch (selIndex) {
-            case 0:
-                view = mTab.findViewById(R.id.action_home);
-                break;
-            case 1:
-                view = mTab.findViewById(R.id.action_classify);
-                break;
-            case 2:
-                view = mTab.findViewById(R.id.action_mine);
-                break;
-            default:
-                break;
-        }
-        view.performClick();
+  private void hint(FragmentTransaction transaction, Integer... fs) {
+    for (int j = 0; j < fs.length; j++) {
+      switch (fs[j]) {
+        case 0:
+          if (mHomeFragment != null) {
+            transaction.hide(mHomeFragment);
+          }
+          break;
+        case 1:
+          if (mClassifyFragment != null) {
+            transaction.hide(mClassifyFragment);
+          }
+          break;
+
+        case 2:
+          if (mMineFragment != null) {
+            transaction.hide(mMineFragment);
+          }
+          break;
+      }
     }
+  }
 
+  @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putInt(SELINDEX, selIndex);
+  }
 
+  //当前时间
+  long current;
 
-    class SelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener {
-
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            FragmentTransaction transaction = fm.beginTransaction();
-
-            switch (item.getItemId()) {
-                case R.id.action_home:
-                    selIndex = 0;
-                    hint(transaction, 1, 2);
-                    if (mHomeFragment == null) {
-                        mHomeFragment = HomeFragment.newInstance();
-                        transaction.add(R.id.fragment_container, mHomeFragment, tags[0]);
-                    } else {
-                        transaction.show(mHomeFragment);
-                    }
-                    break;
-                case R.id.action_classify:
-                    selIndex = 1;
-                    hint(transaction, 0, 2);
-                    if (mClassifyFragment == null) {
-                        mClassifyFragment = new ClassifyFragment();
-                        transaction.add(R.id.fragment_container, mClassifyFragment, tags[1]);
-                    } else {
-                        transaction.show(mClassifyFragment);
-                    }
-                    break;
-
-                case R.id.action_mine:
-                    selIndex = 2;
-                    hint(transaction, 0, 1);
-                    if (mMineFragment == null) {
-                        mMineFragment = MineFragment.newInstance();
-                        transaction.add(R.id.fragment_container, mMineFragment, tags[2]);
-                    } else {
-                        transaction.show(mMineFragment);
-                    }
-                    break;
-
-            }
-            transaction.commit();
-            return true;
-        }
-
-
+  @Override
+  public void onBackPressed() {
+    if (System.currentTimeMillis() - current > 2000) {
+      current = System.currentTimeMillis();
+      Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+    } else {
+      super.onBackPressed();
+      System.exit(0);
     }
-
-    private void hint(FragmentTransaction transaction, Integer... fs) {
-        for (int j = 0; j < fs.length; j++) {
-            switch (fs[j]) {
-                case 0:
-                    if (mHomeFragment != null)
-                        transaction.hide(mHomeFragment);
-                    break;
-                case 1:
-                    if (mClassifyFragment != null)
-                        transaction.hide(mClassifyFragment);
-                    break;
-
-                case 2:
-                    if (mMineFragment != null)
-                        transaction.hide(mMineFragment);
-                    break;
-
-
-            }
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt(SELINDEX, selIndex);
-    }
-
-    //当前时间
-    long current;
-
-    @Override
-    public void onBackPressed() {
-        if (System.currentTimeMillis() - current > 2000) {
-            current = System.currentTimeMillis();
-            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
-        } else {
-            super.onBackPressed();
-            System.exit(0);
-        }
-    }
+  }
 }

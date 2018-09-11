@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.sorrowdrug.gankiobyso.R;
 import com.sorrowdrug.gankiobyso.ui.base.BaseFragment;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 /**
@@ -23,7 +22,7 @@ import java.net.URLEncoder;
 public class MineFragment extends BaseFragment {
   private Switch swMine;
   private TextView tvMine;
-  private Button btnTest,btnText;
+  private Button btnTest, btnText, btn_dialog;
   private TextView tvTest;
   private EditText etTest;
 
@@ -45,9 +44,10 @@ public class MineFragment extends BaseFragment {
     swMine = view.findViewById(R.id.sw_mine);
     tvMine = view.findViewById(R.id.tv_mine);
     btnText = view.findViewById(R.id.btn_text);
-    btnTest = view.findViewById(R.id.btn_test);
+    btnTest = view.findViewById(R.id.btn_jump);
     tvTest = view.findViewById(R.id.tv_text);
     etTest = view.findViewById(R.id.et_text);
+    btn_dialog = view.findViewById(R.id.btn_dialog);
     swMine.setChecked(false);
     swMine.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -65,19 +65,34 @@ public class MineFragment extends BaseFragment {
     });
     btnTest.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View view) {
-        junp();
+        jump();
+      }
+    });
+    btn_dialog.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View view) {
+        dialog();
       }
     });
   }
 
-  private void junp() {
+  private void dialog() {
+
+  }
+
+  private void jump() {
+    String a = "";
+    String b = "";
+    if (a==b) {
+
+    }
     ComponentName
-        chatActivity =new ComponentName("com.anrongcheck", "com.anrongcheck.activity.AboutActivity");
+        chatActivity =
+        new ComponentName("com.anrongcheck", "com.anrongcheck.activity.AboutActivity");
     String sfzh = "62010219721124241X";
-    Intent intent =new Intent();
+    Intent intent = new Intent();
     intent.setComponent(chatActivity);
-    intent.putExtra("sfzh",sfzh);
-    intent.putExtra("isSelf",false);
+    intent.putExtra("sfzh", sfzh);
+    intent.putExtra("isSelf", false);
     startActivity(intent);
   }
 

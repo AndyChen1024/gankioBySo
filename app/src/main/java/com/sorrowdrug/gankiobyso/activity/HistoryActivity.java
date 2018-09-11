@@ -12,13 +12,12 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.sorrowdrug.gankiobyso.R;
-import com.sorrowdrug.gankiobyso.history.HistoryAdapter;
-import com.sorrowdrug.gankiobyso.history.HistoryBean;
-import com.sorrowdrug.gankiobyso.history.mvp.HistoryConstraint;
-import com.sorrowdrug.gankiobyso.history.mvp.HistoryPresenterImpl;
+import com.sorrowdrug.gankiobyso.ui.history.HistoryAdapter;
+import com.sorrowdrug.gankiobyso.ui.history.HistoryBean;
+import com.sorrowdrug.gankiobyso.ui.history.mvp.HistoryConstraint;
+import com.sorrowdrug.gankiobyso.ui.history.mvp.HistoryPresenterImpl;
 import com.sorrowdrug.gankiobyso.ui.base.BaseActivity;
 
-import com.sorrowdrug.gankiobyso.utils.WaterUtil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +67,7 @@ public class HistoryActivity extends BaseActivity implements HistoryConstraint.H
         staggeredGridLayoutManager =
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
-        mAdapter = new HistoryAdapter(this, mData);
+        mAdapter = new HistoryAdapter(HistoryActivity.this, mData);
         recyclerView.setAdapter(mAdapter);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">gankioBySo</string>
+  <string name="app_name">gankioBySo</string>
 
-    <!-- 主页 - tab -->
-    <string name="main_tab_home">主页</string>
-    <string name="main_tab_classify">分类</string>
-    <string name="main_tab_read">闲读</string>
-    <string name="main_tab_mine">我的</string>
-    <string name="title_activity_article_web_view">ArticleWebView</string>
+  <!-- 主页 - tab -->
+  <string name="main_tab_home">主页</string>
+  <string name="main_tab_classify">分类</string>
+  <string name="main_tab_read">闲读</string>
+  <string name="main_tab_mine">我的</string>
+  <string name="title_activity_article_web_view">ArticleWebView</string>
 </resources>
